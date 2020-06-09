@@ -13,4 +13,5 @@ public enum NewsApiErrorsEnum : String {
     case networking = "networking error";
     case http = "http error";
     case data = "error decoding JSON";
+    case zero = "No results for the search";
 }
