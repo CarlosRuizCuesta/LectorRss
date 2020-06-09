@@ -27,9 +27,12 @@ class NewsList {
     /**
      Save all the news list into the data base
      */
-    func saveNews() {
+    func saveNews(delegate : RealmProtocols) {
+        
+        let realmUsage = RealmUsage(delegate: delegate)
+        
         for news in self.newsList {
-            RealmSet.saveNewsList(news: news)
+            realmUsage.saveNews(news: news)
         }
     }
 }
