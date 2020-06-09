@@ -19,10 +19,12 @@ PODS:
   - Realm/Headers (4.1.1)
   - RealmSwift (4.1.1):
     - Realm (= 4.1.1)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
   - PINRemoteImage
   - RealmSwift
+  - Toast-Swift
 
 SPEC REPOS:
   trunk:
@@ -31,6 +33,7 @@ SPEC REPOS:
     - PINRemoteImage
     - Realm
     - RealmSwift
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   PINCache: 534fd41d358d828dfdf227a0d327f3673a65e20b
@@ -38,7 +41,8 @@ SPEC CHECKSUMS:
   PINRemoteImage: e2b89e19fb6e77ffc099f9d9f3b3fe1745e3f9f9
   Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
   RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: c3ae7b52db7cb281f30bb3e9998cc20525576f90
+PODFILE CHECKSUM: 925c7d73e0628b38413a3389f0512ff9e04bf053
 
 COCOAPODS: 1.9.3
