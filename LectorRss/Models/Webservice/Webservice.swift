@@ -42,15 +42,42 @@ class Webservice {
                 return
             }
             
-            // Decoding JSON using the struct ApiNewsResponse
-            do {
-                let result = try JSONDecoder().decode(NewsApiResponse.self, from: data)
-                self.newsApiProtocols.newsApiResult(data : result) // Delegate result as NewsAPIResponse
-            } catch let _ as NSError {
-                self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.data) // Delegate error decoding JSON
-            }
+            self.decodeJsonNewsAPi(data : data)
         }
         
         task.resume()
     }
+    
+    
+    /**
+     Decode the Json of newsApi.
+     Check if the struct is ok.
+     Return delegate depending if the size of news news is more than zero
+     */
+    func decodeJsonNewsAPi(data : Data) {
+        // Decoding JSON using the struct ApiNewsResponse
+        do {
+            let response = try JSONDecoder().decode(NewsApiResponse.self, from: data)
+            if let articles = response.articles {
+                // Check articles size
+                if articles.count <= 0 {
+                    // If there are no results for the searches I show error
+                    self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
+                } else {
+                    // Creation NewsList to add news
+                    let newsList : NewsList = NewsList()
+                    
+                    for article in articles {
+                        newsList.append(news : article.toNewsModel()) // Adding News Response into NewsList as News Model
+                    }
+                    // Return the NewsList
+                    self.newsApiProtocols.newsApiResult(newsList : newsList) // Delegate newsList
+                }
+            }
+            
+        } catch let _ as NSError {
+            self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.data) // Delegate error decoding JSON
+        }
+    }
+    
 }
