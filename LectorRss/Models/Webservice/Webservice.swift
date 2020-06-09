@@ -58,23 +58,24 @@ class Webservice {
         // Decoding JSON using the struct ApiNewsResponse
         do {
             let response = try JSONDecoder().decode(NewsApiResponse.self, from: data)
-            if let articles = response.articles {
+            if let newsStructList = response.articles {
                 // Check articles size
-                if articles.count <= 0 {
+                if newsStructList.count <= 0 {
                     // If there are no results for the searches I show error
                     self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
                 } else {
                     // Creation NewsList to add news
                     let newsList : NewsList = NewsList()
                     
-                    for article in articles {
-                        newsList.append(news : article.toNewsModel()) // Adding News Response into NewsList as News Model
+                    for newsStruct in newsStructList {
+                        newsList.append(news : newsStruct.toNewsModel()) // Adding News Response into NewsList as News Model
                     }
                     // Return the NewsList
                     self.newsApiProtocols.newsApiResult(newsList : newsList) // Delegate newsList
                 }
+            } else {
+                self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
             }
-            
         } catch let _ as NSError {
             self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.data) // Delegate error decoding JSON
         }
