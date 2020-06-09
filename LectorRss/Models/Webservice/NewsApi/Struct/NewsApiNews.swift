@@ -18,4 +18,19 @@ class NewsApiNews : Codable {
     var urlToImage: String!
     var publishedAt : String!
     var content : String!
+    
+    
+    /**
+     Cast NewsApiNews as News Model 
+     */
+    func toNewsModel() -> News {
+        var news = News()
+        
+        news.title = title
+        news.desc = description
+        news.url = url
+        news.urlToImg = urlToImage
+        
+        return news
+    }
 }
