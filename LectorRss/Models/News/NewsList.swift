@@ -23,4 +23,13 @@ class NewsList {
     func get(pos : Int) -> News {
         return newsList[pos]
     }
+    
+    /**
+     Save all the news list into the data base
+     */
+    func saveNews() {
+        for news in self.newsList {
+            RealmSet.saveNewsList(news: news)
+        }
+    }
 }
