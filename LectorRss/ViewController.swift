@@ -13,8 +13,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        Webservice(delegate: self).start()
     }
+}
 
 
+extension ViewController : NewsApiProtocols {
+    
+    
+    func newsApiResult(data: NewsApiResponse) {
+        print("fdsafdsaf")
+    }
+    
+    func newsApiError(error: NewsApiErrorsEnum) {
+        
+        switch error {
+        case NewsApiErrorsEnum.http:
+            print("fdsfds")
+            break
+        case NewsApiErrorsEnum.networking:
+            print("fdsfds")
+            break
+        case NewsApiErrorsEnum.data:
+            print("fdsfds")
+            break
+        }
+    }
 }
 
