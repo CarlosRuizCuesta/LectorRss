@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		057B0684248FDDE900F56313 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057B0682248FDDE900F56313 /* Main.storyboard */; };
 		057B0686248FDDEB00F56313 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057B0685248FDDEB00F56313 /* Assets.xcassets */; };
 		057B0689248FDDEB00F56313 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057B0687248FDDEB00F56313 /* LaunchScreen.storyboard */; };
+		057B0692248FDF7300F56313 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0691248FDF7300F56313 /* Webservice.swift */; };
+		057B0696248FDFE100F56313 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0695248FDFE100F56313 /* NewsApi.swift */; };
 		73E1BCFD9671596DFAE29A5C /* Pods_LectorRss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A303BC7C971ED4A0F63C7DB3 /* Pods_LectorRss.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		057B0685248FDDEB00F56313 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		057B0688248FDDEB00F56313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		057B068A248FDDEB00F56313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		057B0691248FDF7300F56313 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		057B0695248FDFE100F56313 /* NewsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
 		923B8C2CD694C6C48739AE66 /* Pods-LectorRss.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LectorRss.release.xcconfig"; path = "Target Support Files/Pods-LectorRss/Pods-LectorRss.release.xcconfig"; sourceTree = "<group>"; };
 		A303BC7C971ED4A0F63C7DB3 /* Pods_LectorRss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LectorRss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F35A6BA7E65311AF7DB9206A /* Pods-LectorRss.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LectorRss.debug.xcconfig"; path = "Target Support Files/Pods-LectorRss/Pods-LectorRss.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 		057B067B248FDDE900F56313 /* LectorRss */ = {
 			isa = PBXGroup;
 			children = (
+				057B0690248FDF6100F56313 /* Models */,
 				057B067C248FDDE900F56313 /* AppDelegate.swift */,
 				057B067E248FDDE900F56313 /* SceneDelegate.swift */,
 				057B0680248FDDE900F56313 /* ViewController.swift */,
@@ -72,6 +77,31 @@
 				057B068A248FDDEB00F56313 /* Info.plist */,
 			);
 			path = LectorRss;
+			sourceTree = "<group>";
+		};
+		057B0690248FDF6100F56313 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				057B0693248FDF7F00F56313 /* Webservice */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		057B0693248FDF7F00F56313 /* Webservice */ = {
+			isa = PBXGroup;
+			children = (
+				057B0694248FDFD100F56313 /* NewsApi */,
+				057B0691248FDF7300F56313 /* Webservice.swift */,
+			);
+			path = Webservice;
+			sourceTree = "<group>";
+		};
+		057B0694248FDFD100F56313 /* NewsApi */ = {
+			isa = PBXGroup;
+			children = (
+				057B0695248FDFE100F56313 /* NewsApi.swift */,
+			);
+			path = NewsApi;
 			sourceTree = "<group>";
 		};
 		5D813DD18C6200D57B3A2B04 /* Frameworks */ = {
@@ -88,7 +118,6 @@
 				F35A6BA7E65311AF7DB9206A /* Pods-LectorRss.debug.xcconfig */,
 				923B8C2CD694C6C48739AE66 /* Pods-LectorRss.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -208,7 +237,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				057B0681248FDDE900F56313 /* ViewController.swift in Sources */,
+				057B0696248FDFE100F56313 /* NewsApi.swift in Sources */,
 				057B067D248FDDE900F56313 /* AppDelegate.swift in Sources */,
+				057B0692248FDF7300F56313 /* Webservice.swift in Sources */,
 				057B067F248FDDE900F56313 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
