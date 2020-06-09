@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class ViewController: UIViewController {
     
@@ -27,40 +28,66 @@ class ViewController: UIViewController {
 extension ViewController {
     
     /**
-     set the newList and reliad the table
+     set the newList and reload the table
      */
     func setNewsList(newsList : NewsList) {
-        self.newsList = newsList
-        print("")
-        // tlbreload
-    }
-}
-
-
-extension ViewController : NewsApiProtocols {
-    
-    
-    func newsApiResult(newsList: NewsList) {
-        newsList.saveNews() // Save the news into database
-        setNewsList(newsList: newsList)
+        DispatchQueue.main.async {
+            self.newsList = newsList
+            print("")
+            // tlbreload
+        }
     }
     
-    func newsApiError(error: NewsApiErrorsEnum) {
-        
-        switch error {
-        case NewsApiErrorsEnum.http:
-            print("fdsfds")
-            break
-        case NewsApiErrorsEnum.networking:
-            setNewsList(newsList: RealmGet.getNewsList()) // from the database the news list
-            break
-        case NewsApiErrorsEnum.data:
-            print("fdsfds")
-            break
-        case NewsApiErrorsEnum.zero:
-            print("fdsfds")
-            break
+    /**
+     Make Toast
+     */
+    func makeToast(text : String) {
+        DispatchQueue.main.async {
+            self.view.makeToast(text)
+        }
+    }
+    
+    /**
+     Save the list new into database
+     */
+    func saveNewsDataBase() {
+        DispatchQueue.main.async {
+            self.newsList.saveNews(delegate : self) // Save the news into database
         }
     }
 }
 
+extension ViewController : NewsApiProtocols {
+    
+    func newsApiResult(newsList: NewsList) {
+        self.setNewsList(newsList: newsList)
+        self.saveNewsDataBase()
+        self.makeToast(text: "Obtein from ApiNews")
+    }
+    
+    func newsApiError(error: NewsApiErrorsEnum) {
+            switch error {
+            case NewsApiErrorsEnum.networking:
+                let realmUsage = RealmUsage(delegate: self)
+                realmUsage.getNewsList() // Start searching news into database
+                break
+            case NewsApiErrorsEnum.http,
+                 NewsApiErrorsEnum.data,
+                 NewsApiErrorsEnum.zero:
+                self.makeToast(text: error.rawValue)
+                break
+            }
+    }
+}
+
+extension ViewController : RealmProtocols {
+
+    func realmResult(newsList: NewsList) {
+        self.makeToast(text: "Obtein from DataBase")
+        self.setNewsList(newsList: newsList)
+    }
+    
+    func realmError(error: RealmErrorsEnum) {
+        self.makeToast(text: error.rawValue)
+    }
+}
