@@ -6,5 +6,6 @@ target 'LectorRss' do
   use_frameworks!
 
   # Pods for LectorRss
-
+  pod 'RealmSwift'
+  pod 'PINRemoteImage'
 end
