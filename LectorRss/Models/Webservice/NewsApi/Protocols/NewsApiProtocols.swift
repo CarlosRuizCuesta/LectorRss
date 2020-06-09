@@ -10,6 +10,6 @@ import Foundation
 
 
 protocol NewsApiProtocols {
-    func newsApiResult(data : NewsApiResponse)
+    func newsApiResult(newsList : NewsList)
     func newsApiError(error : NewsApiErrorsEnum)
 }

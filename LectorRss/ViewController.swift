@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 extension ViewController : NewsApiProtocols {
     
     
-    func newsApiResult(data: NewsApiResponse) {
+    func newsApiResult(newsList: NewsList) {
         print("fdsafdsaf")
     }
     
@@ -36,6 +36,9 @@ extension ViewController : NewsApiProtocols {
             print("fdsfds")
             break
         case NewsApiErrorsEnum.data:
+            print("fdsfds")
+            break
+        case NewsApiErrorsEnum.zero:
             print("fdsfds")
             break
         }
