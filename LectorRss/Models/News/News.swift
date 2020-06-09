@@ -16,4 +16,19 @@ class News {
     var urlToImg : String!
     var url : String!
     var fecha : Date!
+    
+    
+    /**
+     Cast the news model as news entity
+     */
+    func toEntity() -> NewsEntity {
+        
+        var newsEntity = NewsEntity()
+        newsEntity.title = title
+        newsEntity.desc = desc
+        newsEntity.url = url
+        newsEntity.urlToImg = urlToImg
+        
+        return newsEntity
+    }
 }
