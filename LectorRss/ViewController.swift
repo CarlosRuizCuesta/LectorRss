@@ -11,8 +11,9 @@ import Toast_Swift
 
 class ViewController: UIViewController {
     
+    @IBOutlet var tblNews : UITableView!
     
-    var newsList : NewsList! // @TODO: GEstionate the news table
+    var newsList : NewsList = NewsList()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,7 @@ extension ViewController {
     func setNewsList(newsList : NewsList) {
         DispatchQueue.main.async {
             self.newsList = newsList
-            print("")
-            // tlbreload
+            self.tblNews.reloadData()
         }
     }
     
@@ -83,11 +83,29 @@ extension ViewController : NewsApiProtocols {
 extension ViewController : RealmProtocols {
 
     func realmResult(newsList: NewsList) {
-        self.makeToast(text: "Obtein from DataBase")
         self.setNewsList(newsList: newsList)
+        self.makeToast(text: "Obtein from Database")
     }
     
     func realmError(error: RealmErrorsEnum) {
         self.makeToast(text: error.rawValue)
+    }
+}
+
+extension ViewController : UITableViewDataSource  {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newsList.count()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNews", for: indexPath) as! TableCellNews
+        let news = newsList.get(pos : indexPath.row)
+        
+        cell.lblTitle.text = news.title
+        cell.lblDescription.text = news.desc
+        
+        return cell
     }
 }

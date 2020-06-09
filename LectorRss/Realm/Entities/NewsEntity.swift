@@ -13,11 +13,11 @@ import RealmSwift
 class NewsEntity : Object {
     
     
-    @objc var title : String!
-    @objc var desc : String!
-    @objc var urlToImg : String!
-    @objc var url : String!
-    @objc var fecha : Date!
+    @objc dynamic var title : String!
+    @objc dynamic var desc : String!
+    @objc dynamic var urlToImg : String!
+    @objc dynamic var url : String!
+    @objc dynamic var fecha : Date!
     
     override static func primaryKey() -> String? {
         return "title"
@@ -31,10 +31,10 @@ class NewsEntity : Object {
         
         var news = News()
         
-        news.title = title
-        news.desc = desc
-        news.urlToImg = urlToImg
-        news.url = url
+        news.title = self.title
+        news.desc = self.desc
+        news.urlToImg = self.urlToImg
+        news.url = self.url
         
         return news
     }
