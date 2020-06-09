@@ -1,5 +1,5 @@
 //
-//  NewsApiResponse.swift
+//  NewsApiSource.swift
 //  LectorRss
 //
 //  Created by MIGUEL PEREZ SUBIAS on 09/06/2020.
@@ -8,10 +8,9 @@
 
 import Foundation
 
-class NewsApiResponse : Codable {
-    
-    var status : String!
-    var articles : [NewsApiNews]!
-    var totalResults : Int!
-}
 
+class NewsApiSource : Codable {
+    
+    var id : String!
+    var name : String!
+}
