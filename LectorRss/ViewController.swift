@@ -113,13 +113,11 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNews", for: indexPath) as! TableCellNews
         let news = newsList.get(pos : indexPath.row) // Get news from newsList by rowPath
+        let urlImage = news.urlToImg ?? TableCellNews.imgImageDefault
         
         cell.lblTitle.text = news.title
         cell.lblDescription.text = news.desc
-        // Check if the news have image url
-        if let url = news.urlToImg {
-            cell.imgImage!.pin_setImage(from: URL(string: news.urlToImg)!)
-        }
+        cell.imgImage!.pin_setImage(from: URL(string:  urlImage)!)
         
         return cell
     }

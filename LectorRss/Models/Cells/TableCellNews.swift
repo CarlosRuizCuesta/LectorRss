@@ -13,6 +13,8 @@ class TableCellNews: UITableViewCell {
     @IBOutlet var lblTitle : UILabel!
     @IBOutlet var lblDescription : UILabel!
     @IBOutlet var imgImage : UIImageView!
+    
+    static var imgImageDefault : String = "https://increasify.com.au/wp-content/uploads/2016/08/default-image.png"
 
     override func awakeFromNib() {
         super.awakeFromNib()

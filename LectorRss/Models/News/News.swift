@@ -13,7 +13,7 @@ class News {
     
     var title : String!
     var desc : String!
-    var urlToImg : String!
+    var urlToImg : String?
     var url : String!
     var date : Date!
     
