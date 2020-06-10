@@ -8,6 +8,7 @@
 
 import UIKit
 import Toast_Swift
+import PINRemoteImage
 
 class ViewController: UIViewController {
     
@@ -105,6 +106,7 @@ extension ViewController : UITableViewDataSource  {
         
         cell.lblTitle.text = news.title
         cell.lblDescription.text = news.desc
+        cell.imgImage!.pin_setImage(from: URL(string: news.urlToImg)!)
         
         return cell
     }
