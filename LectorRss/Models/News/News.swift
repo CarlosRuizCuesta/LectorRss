@@ -15,7 +15,7 @@ class News {
     var desc : String!
     var urlToImg : String!
     var url : String!
-    var fecha : Date!
+    var date : Date!
     
     
     /**
@@ -28,6 +28,7 @@ class News {
         newsEntity.desc = desc
         newsEntity.url = url
         newsEntity.urlToImg = urlToImg
+        newsEntity.date = date
         
         return newsEntity
     }

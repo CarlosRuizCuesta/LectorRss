@@ -17,7 +17,7 @@ class NewsEntity : Object {
     @objc dynamic var desc : String!
     @objc dynamic var urlToImg : String!
     @objc dynamic var url : String!
-    @objc dynamic var fecha : Date!
+    @objc dynamic var date : Date!
     
     override static func primaryKey() -> String? {
         return "title"
@@ -35,6 +35,7 @@ class NewsEntity : Object {
         news.desc = self.desc
         news.urlToImg = self.urlToImg
         news.url = self.url
+        news.date = self.date
         
         return news
     }
