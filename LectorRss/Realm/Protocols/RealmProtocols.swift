@@ -8,8 +8,4 @@
 
 import Foundation
 
-protocol RealmProtocols {
-    func realmResult(newsList : NewsList)
-    func realmError(error : RealmErrorsEnum)
-}
 

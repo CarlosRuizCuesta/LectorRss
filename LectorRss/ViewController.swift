@@ -61,7 +61,7 @@ extension ViewController {
 }
 
 // Response webservice and database
-extension ViewController : RealmProtocols, NewsApiProtocols {
+extension ViewController : RealmProtocols, WebserviceProtocols {
 
     // Successful database response
     func realmResult(newsList: NewsList) {
@@ -74,15 +74,15 @@ extension ViewController : RealmProtocols, NewsApiProtocols {
         self.makeToast(text: error.rawValue)
     }
     
-    // Successful ApiNews response
-    func newsApiResult(newsList: NewsList) {
+    // Successful webservice response
+    func webserviceResult(newsList: NewsList) {
         self.setNewsList(newsList: newsList)
         self.saveNewsDataBase()
         self.makeToast(text: "Obtein from ApiNews")
     }
     
-    // Error ApiNews response
-    func newsApiError(error: NewsApiErrorsEnum) {
+    // Error webservice response
+    func webserviceError(error: NewsApiErrorsEnum) {
             switch error {
             case NewsApiErrorsEnum.networking:
                 let realmUsage = RealmUsage(delegate: self)
@@ -115,7 +115,10 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
         
         cell.lblTitle.text = news.title
         cell.lblDescription.text = news.desc
-        cell.imgImage!.pin_setImage(from: URL(string: news.urlToImg)!)
+        // Check if the news have image url
+        if let url = news.urlToImg {
+            cell.imgImage!.pin_setImage(from: URL(string: news.urlToImg)!)
+        }
         
         return cell
     }

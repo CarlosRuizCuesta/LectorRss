@@ -11,11 +11,11 @@ import Foundation
 class Webservice {
     
     var newsApi : NewsApi!
-    var newsApiProtocols : NewsApiProtocols!
+    var webserviceProtocols : WebserviceProtocols!
     
     convenience init(delegate : Any) {
         self.init()
-        self.newsApiProtocols = delegate as! NewsApiProtocols
+        self.webserviceProtocols = delegate as! WebserviceProtocols
         newsApi = NewsApi()
     }
     
@@ -33,12 +33,12 @@ class Webservice {
             guard let data = data,
                 let response = response as? HTTPURLResponse,
                 error == nil else {
-                    self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.networking) // Delegate error NetWorkError
+                    self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.networking) // Delegate error NetWorkError
                     return
             }
             
             guard (200 ... 299) ~= response.statusCode else {
-                self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.http) // Delegate error HttpError
+                self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.http) // Delegate error HttpError
                 return
             }
             
@@ -62,7 +62,7 @@ class Webservice {
                 // Check articles size
                 if newsStructList.count <= 0 {
                     // If there are no results for the searches I show error
-                    self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
+                    self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
                 } else {
                     // Creation NewsList to add news
                     let newsList : NewsList = NewsList()
@@ -71,13 +71,13 @@ class Webservice {
                         newsList.append(news : newsStruct.toNewsModel()) // Adding News Response into NewsList as News Model
                     }
                     // Return the NewsList
-                    self.newsApiProtocols.newsApiResult(newsList : newsList) // Delegate newsList
+                    self.webserviceProtocols.webserviceResult(newsList : newsList) // Delegate newsList
                 }
             } else {
-                self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
+                self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
             }
         } catch let _ as NSError {
-            self.newsApiProtocols.newsApiError(error: NewsApiErrorsEnum.data) // Delegate error decoding JSON
+            self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.data) // Delegate error decoding JSON
         }
     }
     
