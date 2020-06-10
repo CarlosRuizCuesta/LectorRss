@@ -18,7 +18,7 @@
 		057B0699248FE58600F56313 /* NewsApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0698248FE58600F56313 /* NewsApiResponse.swift */; };
 		057B069B248FE88400F56313 /* NewsApiNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B069A248FE88400F56313 /* NewsApiNews.swift */; };
 		057B069D248FE98B00F56313 /* NewsApiSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B069C248FE98B00F56313 /* NewsApiSource.swift */; };
-		057B06A0248FEABD00F56313 /* NewsApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B069F248FEABD00F56313 /* NewsApiErrors.swift */; };
+		057B06A0248FEABD00F56313 /* WebserviceEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B069F248FEABD00F56313 /* WebserviceEnum.swift */; };
 		057B06A6248FF5D100F56313 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B06A5248FF5D100F56313 /* News.swift */; };
 		057B06A8248FF62E00F56313 /* NewsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B06A7248FF62E00F56313 /* NewsList.swift */; };
 		057B06AC248FFF4D00F56313 /* NewsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B06AB248FFF4D00F56313 /* NewsEntity.swift */; };
@@ -43,7 +43,7 @@
 		057B0698248FE58600F56313 /* NewsApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiResponse.swift; sourceTree = "<group>"; };
 		057B069A248FE88400F56313 /* NewsApiNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiNews.swift; sourceTree = "<group>"; };
 		057B069C248FE98B00F56313 /* NewsApiSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiSource.swift; sourceTree = "<group>"; };
-		057B069F248FEABD00F56313 /* NewsApiErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiErrors.swift; sourceTree = "<group>"; };
+		057B069F248FEABD00F56313 /* WebserviceEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebserviceEnum.swift; sourceTree = "<group>"; };
 		057B06A5248FF5D100F56313 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		057B06A7248FF62E00F56313 /* NewsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsList.swift; sourceTree = "<group>"; };
 		057B06AB248FFF4D00F56313 /* NewsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntity.swift; sourceTree = "<group>"; };
@@ -117,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				057B0694248FDFD100F56313 /* NewsApi */,
+				057B069F248FEABD00F56313 /* WebserviceEnum.swift */,
 				057B0691248FDF7300F56313 /* Webservice.swift */,
 			);
 			path = Webservice;
@@ -145,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				057B0695248FDFE100F56313 /* NewsApi.swift */,
-				057B069F248FEABD00F56313 /* NewsApiErrors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 				057B0696248FDFE100F56313 /* NewsApi.swift in Sources */,
 				05E8870324915E10007D193A /* Protocols.swift in Sources */,
 				057B06B42490039300F56313 /* RealmErrorsEnum.swift in Sources */,
-				057B06A0248FEABD00F56313 /* NewsApiErrors.swift in Sources */,
+				057B06A0248FEABD00F56313 /* WebserviceEnum.swift in Sources */,
 				057B067D248FDDE900F56313 /* AppDelegate.swift in Sources */,
 				057B0692248FDF7300F56313 /* Webservice.swift in Sources */,
 				057B0699248FE58600F56313 /* NewsApiResponse.swift in Sources */,

@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             print("Documents directory \(documentPath)")
         }
         
-        Webservice(delegate: self).start() // Start the Webservice
+        Webservice(delegate: self, type: WebserviceTypeEnum.apinews).start() // Start the Webservice
     }
 }
 
@@ -82,15 +82,16 @@ extension ViewController : RealmProtocols, WebserviceProtocols {
     }
     
     // Error webservice response
-    func webserviceError(error: NewsApiErrorsEnum) {
+    func webserviceError(error: WebserviceErrorsEnum) {
             switch error {
-            case NewsApiErrorsEnum.networking:
+            case WebserviceErrorsEnum.networking:
                 let realmUsage = RealmUsage(delegate: self)
                 realmUsage.getNewsList() // Start searching news into database
                 break
-            case NewsApiErrorsEnum.http,
-                 NewsApiErrorsEnum.data,
-                 NewsApiErrorsEnum.zero:
+            case WebserviceErrorsEnum.http,
+                 WebserviceErrorsEnum.data,
+                 WebserviceErrorsEnum.zero,
+                WebserviceErrorsEnum.typenf:
                 self.makeToast(text: error.rawValue)
                 break
             }

@@ -11,7 +11,7 @@ import Foundation
 
 protocol WebserviceProtocols {
     func webserviceResult(newsList : NewsList)
-    func webserviceError(error : NewsApiErrorsEnum)
+    func webserviceError(error : WebserviceErrorsEnum)
 }
 
 protocol RealmProtocols {

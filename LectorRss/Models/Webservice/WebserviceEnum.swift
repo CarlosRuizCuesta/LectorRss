@@ -9,9 +9,14 @@
 import Foundation
 
 
-public enum NewsApiErrorsEnum : String {
+public enum WebserviceErrorsEnum : String {
     case networking = "networking error";
     case http = "http error";
     case data = "error decoding JSON";
     case zero = "No results for the search";
+    case typenf = "Type of api dont found";
+}
+
+enum WebserviceTypeEnum : String {
+    case apinews = "apiNews";
 }

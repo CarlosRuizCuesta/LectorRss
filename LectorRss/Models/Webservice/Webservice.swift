@@ -12,9 +12,11 @@ class Webservice {
     
     var newsApi : NewsApi!
     var webserviceProtocols : WebserviceProtocols!
+    var typeWebservice : WebserviceTypeEnum!
     
-    convenience init(delegate : Any) {
+    convenience init(delegate : Any, type : WebserviceTypeEnum) {
         self.init()
+        self.typeWebservice = type
         self.webserviceProtocols = delegate as! WebserviceProtocols
         newsApi = NewsApi()
     }
@@ -33,16 +35,23 @@ class Webservice {
             guard let data = data,
                 let response = response as? HTTPURLResponse,
                 error == nil else {
-                    self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.networking) // Delegate error NetWorkError
+                    self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.networking) // Delegate error NetWorkError
                     return
             }
             
             guard (200 ... 299) ~= response.statusCode else {
-                self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.http) // Delegate error HttpError
+                self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.http) // Delegate error HttpError
                 return
             }
             
-            self.decodeJsonNewsAPi(data : data)
+            // No errors
+            // Check of the type webservice to decode the JSON
+            switch self.typeWebservice {
+            case .apinews:
+                self.decodeJsonNewsAPi(data: data)
+            case .none:
+                self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.typenf) // Delegate error HttpError
+            }
         }
         
         task.resume()
@@ -62,7 +71,7 @@ class Webservice {
                 // Check articles size
                 if newsStructList.count <= 0 {
                     // If there are no results for the searches I show error
-                    self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
+                    self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.zero) // Delegate error Zero
                 } else {
                     // Creation NewsList to add news
                     let newsList : NewsList = NewsList()
@@ -74,10 +83,10 @@ class Webservice {
                     self.webserviceProtocols.webserviceResult(newsList : newsList) // Delegate newsList
                 }
             } else {
-                self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.zero) // Delegate error Zero
+                self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.zero) // Delegate error Zero
             }
         } catch let _ as NSError {
-            self.webserviceProtocols.webserviceError(error: NewsApiErrorsEnum.data) // Delegate error decoding JSON
+            self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.data) // Delegate error decoding JSON
         }
     }
     
