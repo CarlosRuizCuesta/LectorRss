@@ -11,6 +11,7 @@ import RealmSwift
 
 class RealmUsage {
     
+    static var PAGINATIONSIZE : Int = 20
     var delegate : RealmProtocols!
     
     init(delegate : RealmProtocols) {
@@ -27,7 +28,7 @@ class RealmUsage {
             try  realm.write {
                 realm.add(news.toEntity(), update: .all)
             }
-        } catch let _ as NSError {
+        } catch _ as NSError {
             delegate.realmError(error : RealmErrorsEnum.set)
         }
     }
@@ -36,7 +37,7 @@ class RealmUsage {
      Search all the news from the database
      */
     func getNewsList() {
-        var newsList = NewsList()
+        let newsList = NewsList()
         
         do {
             let realm = try Realm()
@@ -44,7 +45,11 @@ class RealmUsage {
             
             // read the entities recived from database
             for newsEntity in newsListEntity {
-                newsList.append(news: newsEntity.toModel()) // add the news model to the newsList
+                if newsList.count() <= RealmUsage.PAGINATIONSIZE { // Pagination
+                    newsList.append(news: newsEntity.toModel()) // add the news model to the newsList
+                } else {
+                    break
+                }
             }
             
             // Check if the list is empty
@@ -53,7 +58,7 @@ class RealmUsage {
             } else {
                 delegate.realmError(error : RealmErrorsEnum.zero) // delegate error zero
             }
-        } catch let _ as NSError {
+        } catch _ as NSError {
             delegate.realmError(error : RealmErrorsEnum.set)
         }
     }
