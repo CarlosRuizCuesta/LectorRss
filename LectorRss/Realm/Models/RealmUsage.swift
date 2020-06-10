@@ -40,7 +40,7 @@ class RealmUsage {
         
         do {
             let realm = try Realm()
-            let newsListEntity : Results<NewsEntity> = realm.objects(NewsEntity.self)
+            let newsListEntity : Results<NewsEntity> = realm.objects(NewsEntity.self).sorted(byKeyPath: "date", ascending: false)
             
             // read the entities recived from database
             for newsEntity in newsListEntity {
