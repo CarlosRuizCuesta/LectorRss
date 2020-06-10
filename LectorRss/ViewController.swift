@@ -13,6 +13,7 @@ import PINRemoteImage
 class ViewController: UIViewController {
     
     @IBOutlet var tblNews : UITableView!
+    @IBOutlet var searchBar : UISearchBar!
     
     var newsList : NewsList = NewsList()
 
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
             print("Documents directory \(documentPath)")
         }
         
-        Webservice(delegate: self).start()
+        Webservice(delegate: self).start() // Start the Webservice
     }
 }
 
@@ -60,12 +61,14 @@ extension ViewController {
 
 extension ViewController : NewsApiProtocols {
     
+    // Successful ApiNews response
     func newsApiResult(newsList: NewsList) {
         self.setNewsList(newsList: newsList)
         self.saveNewsDataBase()
         self.makeToast(text: "Obtein from ApiNews")
     }
     
+    // Error ApiNews response
     func newsApiError(error: NewsApiErrorsEnum) {
             switch error {
             case NewsApiErrorsEnum.networking:
@@ -83,11 +86,13 @@ extension ViewController : NewsApiProtocols {
 
 extension ViewController : RealmProtocols {
 
+    // Successful database response
     func realmResult(newsList: NewsList) {
         self.setNewsList(newsList: newsList)
         self.makeToast(text: "Obtein from Database")
     }
     
+    // Error database response
     func realmError(error: RealmErrorsEnum) {
         self.makeToast(text: error.rawValue)
     }
@@ -109,5 +114,23 @@ extension ViewController : UITableViewDataSource  {
         cell.imgImage!.pin_setImage(from: URL(string: news.urlToImg)!)
         
         return cell
+    }
+}
+
+extension ViewController : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if !searchText.isEmpty {
+            //  Look for the news in the backup list that have in the title the string passed by the Searchbar
+            newsList.newsList = newsList.newsListBackup.filter({ (news : News) -> Bool in
+                return news.title.lowercased().contains(searchText.lowercased())
+            })
+        } else {
+            // Initialize the news list with the backup list
+            newsList.newsList = newsList.newsListBackup
+        }
+        
+        tblNews.reloadData()
     }
 }

@@ -11,9 +11,11 @@ import Foundation
 class NewsList {
     
     var newsList : [News] = []
+    var newsListBackup : [News] = [] // Backup List for the search bar Copy of the news list
     
     func append(news : News) {
         newsList.append(news)
+        newsListBackup.append(news)
     }
     
     func count() -> Int {
@@ -22,6 +24,10 @@ class NewsList {
     
     func get(pos : Int) -> News {
         return newsList[pos]
+    }
+    
+    func getList() -> [News] {
+        return newsList
     }
     
     /**
