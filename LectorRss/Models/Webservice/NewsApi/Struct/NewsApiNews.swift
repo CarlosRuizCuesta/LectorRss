@@ -23,8 +23,11 @@ class NewsApiNews : Codable {
     /**
      Cast NewsApiNews as News Model 
      */
-    func toNewsModel() -> News {
-        var news = News()
+    func toNewsModel() -> News? {
+        
+        if urlToImage == nil { return nil} // Only add news entity when has a image url
+        
+        let news = News()
         
         news.title = title
         news.desc = description

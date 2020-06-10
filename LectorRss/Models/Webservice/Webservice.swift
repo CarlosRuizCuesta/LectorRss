@@ -77,7 +77,10 @@ class Webservice {
                     let newsList : NewsList = NewsList()
                     
                     for newsStruct in newsStructList {
-                        newsList.append(news : newsStruct.toNewsModel()) // Adding News Response into NewsList as News Model
+                        
+                        if let news = newsStruct.toNewsModel() {
+                            newsList.append(news : news) // Adding News Response into NewsList as News Model
+                        }
                     }
                     // Return the NewsList
                     self.webserviceProtocols.webserviceResult(newsList : newsList) // Delegate newsList
