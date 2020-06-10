@@ -100,6 +100,10 @@ extension ViewController : RealmProtocols, NewsApiProtocols {
 // UISearchBarDelegate UITableViewDelegate Methods
 extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let news = newsList.get(pos : indexPath.row) // Get news from newsList by rowPath
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsList.count()
     }
