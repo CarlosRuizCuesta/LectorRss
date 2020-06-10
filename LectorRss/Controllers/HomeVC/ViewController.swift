@@ -103,6 +103,11 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let news = newsList.get(pos : indexPath.row) // Get news from newsList by rowPath
+        let newsVC = storyboard?.instantiateViewController(withIdentifier: "NewsVC") as! NewsVC
+        newsVC.modalPresentationStyle = .overCurrentContext
+        newsVC.modalTransitionStyle = .crossDissolve
+        newsVC.news = news
+        self.present(newsVC, animated: false, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
