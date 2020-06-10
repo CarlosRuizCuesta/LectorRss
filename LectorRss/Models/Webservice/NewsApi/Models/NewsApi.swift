@@ -16,7 +16,7 @@ class NewsApi {
     static var API = "619e89b805954fcf8cbbe753b221bcf2"
     
     var search : String = "ios"
-    var sortBy : String = "Date"
+    var sortBy : String = "publishedAt"
     var url = URLComponents(string: URL)
     var parameters: [String: Any]!
     
