@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     }
 }
 
+// ViewController Methods
 extension ViewController {
     
     /**
@@ -59,7 +60,19 @@ extension ViewController {
     }
 }
 
-extension ViewController : NewsApiProtocols {
+// Response webservice and database
+extension ViewController : RealmProtocols, NewsApiProtocols {
+
+    // Successful database response
+    func realmResult(newsList: NewsList) {
+        self.setNewsList(newsList: newsList)
+        self.makeToast(text: "Obtein from Database")
+    }
+    
+    // Error database response
+    func realmError(error: RealmErrorsEnum) {
+        self.makeToast(text: error.rawValue)
+    }
     
     // Successful ApiNews response
     func newsApiResult(newsList: NewsList) {
@@ -84,21 +97,8 @@ extension ViewController : NewsApiProtocols {
     }
 }
 
-extension ViewController : RealmProtocols {
-
-    // Successful database response
-    func realmResult(newsList: NewsList) {
-        self.setNewsList(newsList: newsList)
-        self.makeToast(text: "Obtein from Database")
-    }
-    
-    // Error database response
-    func realmError(error: RealmErrorsEnum) {
-        self.makeToast(text: error.rawValue)
-    }
-}
-
-extension ViewController : UITableViewDataSource  {
+// UISearchBarDelegate UITableViewDelegate Methods
+extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsList.count()
@@ -107,7 +107,7 @@ extension ViewController : UITableViewDataSource  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNews", for: indexPath) as! TableCellNews
-        let news = newsList.get(pos : indexPath.row)
+        let news = newsList.get(pos : indexPath.row) // Get news from newsList by rowPath
         
         cell.lblTitle.text = news.title
         cell.lblDescription.text = news.desc
@@ -117,6 +117,7 @@ extension ViewController : UITableViewDataSource  {
     }
 }
 
+// UISearchBarDelegate Methods
 extension ViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
