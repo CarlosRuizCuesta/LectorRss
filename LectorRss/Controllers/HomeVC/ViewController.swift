@@ -9,6 +9,7 @@
 import UIKit
 import Toast_Swift
 import PINRemoteImage
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -20,17 +21,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path {
-            print("Documents directory \(documentPath)")
+        // Check if the device have internet connection
+        if NetworkReachabilityManager()!.isReachable {
+            Webservice(delegate: self, type: WebserviceTypeEnum.apinews).start() // Start the Webservice
+        } else {
+            loadNewsDataBase() // Get news from database
         }
-        
-        Webservice(delegate: self, type: WebserviceTypeEnum.apinews).start() // Start the Webservice
     }
 }
 
 // ViewController Methods
 extension ViewController {
     
+    /**
+     Get the news from the database
+     */
+    func loadNewsDataBase() {
+        let realmUsage = RealmUsage(delegate: self)
+        realmUsage.getNewsList() // Start searching news into database
+    }
     /**
      set the newList and reload the table
      */
@@ -54,9 +63,7 @@ extension ViewController {
      Save the list new into database
      */
     func saveNewsDataBase() {
-        DispatchQueue.main.async {
-            self.newsList.saveNews(delegate : self) // Save the news into database
-        }
+        self.newsList.saveNews(delegate : self) // Save the news into database
     }
 }
 
@@ -85,8 +92,7 @@ extension ViewController : RealmProtocols, WebserviceProtocols {
     func webserviceError(error: WebserviceErrorsEnum) {
             switch error {
             case WebserviceErrorsEnum.networking:
-                let realmUsage = RealmUsage(delegate: self)
-                realmUsage.getNewsList() // Start searching news into database
+                self.loadNewsDataBase()
                 break
             case WebserviceErrorsEnum.http,
                  WebserviceErrorsEnum.data,
