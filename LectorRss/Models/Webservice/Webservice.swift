@@ -14,10 +14,9 @@ class Webservice {
     var webserviceProtocols : WebserviceProtocols!
     var typeWebservice : WebserviceTypeEnum!
     
-    convenience init(delegate : Any, type : WebserviceTypeEnum) {
+    convenience init(delegate : WebserviceProtocols, type : WebserviceTypeEnum) {
         self.init()
         self.typeWebservice = type
-        self.webserviceProtocols = delegate as! WebserviceProtocols
         newsApi = NewsApi()
     }
     
@@ -78,7 +77,7 @@ class Webservice {
                     
                     for newsStruct in newsStructList {
                         
-                        if let news = newsStruct.toNewsModel() {
+                        if let news = newsStruct.toNewsModel() {
                             newsList.append(news : news) // Adding News Response into NewsList as News Model
                         }
                     }
@@ -88,7 +87,7 @@ class Webservice {
             } else {
                 self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.zero) // Delegate error Zero
             }
-        } catch let _ as NSError {
+        } catch _ as NSError {
             self.webserviceProtocols.webserviceError(error: WebserviceErrorsEnum.data) // Delegate error decoding JSON
         }
     }

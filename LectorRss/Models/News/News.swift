@@ -24,7 +24,7 @@ class News {
      */
     func toEntity() -> NewsEntity {
         
-        var newsEntity = NewsEntity()
+        let newsEntity = NewsEntity()
         newsEntity.title = title
         newsEntity.desc = desc
         newsEntity.content = content

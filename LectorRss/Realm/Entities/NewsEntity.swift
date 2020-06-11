@@ -30,7 +30,7 @@ class NewsEntity : Object {
      */
     func toModel() -> News {
         
-        var news = News()
+        let news = News()
         
         news.title = self.title
         news.desc = self.desc
