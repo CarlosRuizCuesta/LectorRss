@@ -13,6 +13,7 @@ class News {
     
     var title : String!
     var desc : String!
+    var content : String!
     var urlToImg : String?
     var url : String!
     var date : Date!
@@ -26,6 +27,7 @@ class News {
         var newsEntity = NewsEntity()
         newsEntity.title = title
         newsEntity.desc = desc
+        newsEntity.content = content
         newsEntity.url = url
         newsEntity.urlToImg = urlToImg
         newsEntity.date = date

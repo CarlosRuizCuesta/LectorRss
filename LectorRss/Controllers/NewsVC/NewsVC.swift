@@ -26,7 +26,7 @@ class NewsVC : UIViewController {
     
     func setUI() {
         lblTitle.text = news.title
-        lblDesc.text = news.desc
+        lblDesc.text = news.content
         imgNews.pin_setImage(from: URL(string:  news.urlToImg!)!)
     }
     
