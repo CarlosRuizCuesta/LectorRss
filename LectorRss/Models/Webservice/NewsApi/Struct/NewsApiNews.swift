@@ -25,7 +25,7 @@ class NewsApiNews : Codable {
      */
     func toNewsModel() -> News? {
         
-        if urlToImage == nil { return nil} // Only add news entity when has a image url
+        if (title == nil) || (description == nil) || (url == nil) || (urlToImage == nil)  || (publishedAt == nil) || (content == nil) { return nil} // Only add news entity when has all properties
         
         let news = News()
         
@@ -33,6 +33,7 @@ class NewsApiNews : Codable {
         news.desc = description
         news.url = url
         news.urlToImg = urlToImage
+        news.content = content
         news.date = generateDate()
         
         return news
