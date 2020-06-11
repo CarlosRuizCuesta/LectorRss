@@ -9,4 +9,5 @@ target 'LectorRss' do
   pod 'RealmSwift'
   pod 'PINRemoteImage'
   pod 'Toast-Swift'
+  pod 'Alamofire'
 end
