@@ -27,7 +27,15 @@ class NewsVC : UIViewController {
     func setUI() {
         lblTitle.text = news.title
         lblDesc.text = news.content
-        imgNews.pin_setImage(from: URL(string:  news.urlToImg!)!)
+        
+        // Check if the url in the image is empty
+        if let urlImage = news.urlToImg {
+            if !urlImage.isEmpty {
+                imgNews!.pin_setImage(from: URL(string:  urlImage)!)
+            } else {
+                imgNews!.pin_setImage(from: URL(string:  TableCellNews.imgImageDefault)!) // Set Default image
+            }
+        }
     }
     
     @IBAction func btn_newsClick(_ sender : Any) {
