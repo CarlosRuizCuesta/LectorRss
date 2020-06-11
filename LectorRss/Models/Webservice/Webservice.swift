@@ -17,6 +17,7 @@ class Webservice {
     convenience init(delegate : WebserviceProtocols, type : WebserviceTypeEnum) {
         self.init()
         self.typeWebservice = type
+        self.webserviceProtocols = delegate
         newsApi = NewsApi()
     }
     
