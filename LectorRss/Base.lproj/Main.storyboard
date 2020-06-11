@@ -108,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Detalle de la noticia" id="uPa-Vn-e8t">
-                                        <barButtonItem key="leftBarButtonItem" title="Atras" id="LsH-fo-XWR">
+                                        <barButtonItem key="leftBarButtonItem" title="Atrás" id="LsH-fo-XWR">
                                             <connections>
                                                 <action selector="btn_back:" destination="Jsw-Vr-CR4" id="wZh-Od-dVK"/>
                                             </connections>
