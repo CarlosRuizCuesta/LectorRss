@@ -31,6 +31,11 @@ class NewsVC : UIViewController {
     }
     
     @IBAction func btn_newsClick(_ sender : Any) {
-        
+        guard let url = URL(string: news.url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    @IBAction func btn_back (_ sender : Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
