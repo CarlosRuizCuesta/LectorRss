@@ -46,6 +46,7 @@ extension ViewController {
     func setNewsList(newsList : NewsList) {
         DispatchQueue.main.async {
             self.newsList = newsList
+            self.saveNewsDataBase()
             self.tblNews.reloadData()
         }
     }
@@ -157,5 +158,10 @@ extension ViewController : UISearchBarDelegate {
         }
         
         tblNews.reloadData()
+    }
+    
+    // When button "Search" pressed
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        self.searchBar.endEditing(true)
     }
 }

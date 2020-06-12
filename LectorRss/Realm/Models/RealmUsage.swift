@@ -59,7 +59,7 @@ class RealmUsage {
                 delegate.realmError(error : RealmErrorsEnum.zero) // delegate error zero
             }
         } catch _ as NSError {
-            delegate.realmError(error : RealmErrorsEnum.set)
+            delegate.realmError(error : RealmErrorsEnum.get)
         }
     }
 }
